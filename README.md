@@ -27,8 +27,8 @@ npm install nodemon -g
 The minimal usage of nodemon runs with no options:
 ```js
 nodemon: {
-    dev: {}
-  }
+  dev: {}
+}
 ```
 When this is run, nodemon will look at the `package.json` file for the `main` property and run its value as a command in node.
 
@@ -36,23 +36,23 @@ Here is a config that uses all of the available options for nodemon:
 
 ```js
 nodemon: {
-    prod: {
-      options: {
-        file: 'test/server.js',
-        args: ['production'],
-        ignoredFiles: ['README.md', 'node_modules/**'],
-        watchedExtensions: ['js', 'coffee'],
-        watchedFolders: ['test', 'tasks'],
-        debug: true,
-        delayTime: 1
-      }
-    },
-    exec: {
-      options: {
-        exec: 'less'
-      }
+  prod: {
+    options: {
+      file: 'test/server.js',
+      args: ['production'],
+      ignoredFiles: ['README.md', 'node_modules/**'],
+      watchedExtensions: ['js', 'coffee'],
+      watchedFolders: ['test', 'tasks'],
+      debug: true,
+      delayTime: 1
+    }
+  },
+  exec: {
+    options: {
+      exec: 'less'
     }
   }
+}
 ```
 ### Options
 
