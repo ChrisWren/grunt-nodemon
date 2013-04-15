@@ -1,0 +1,23 @@
+{
+  "name": "grunt-nodemon",
+  "version": "0.0.0",
+  "description": "Grunt task to run a nodemon monitor of your node.js server",
+  "main": "test/server.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisWren/grunt-nodemon.git"
+  },
+  "keywords": [
+    "gruntplugin",
+    "nodemon",
+    "server"
+  ],
+  "author": "Chris Wren",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}
