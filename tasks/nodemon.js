@@ -67,7 +67,8 @@ module.exports = function (grunt) {
       }
     }, function (error, result) {
       if (error) {
-        grunt.fail.fatal(result.stdout);
+        grunt.log.error(result.stderr);
+        done(false);
       }
       grunt.log.writeln(result.stdout);
       done();

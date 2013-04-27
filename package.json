@@ -17,6 +17,9 @@
   ],
   "author": "Chris Wren",
   "license": "MIT",
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.1"
   }
