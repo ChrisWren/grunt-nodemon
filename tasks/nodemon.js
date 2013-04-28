@@ -68,6 +68,8 @@ module.exports = function (grunt) {
     }, function (error, result) {
       if (error) {
         grunt.log.error(result.stderr);
+        grunt.log.error('Make sure you have nodemon installed globally. You can install it by entering the following into your terminal:');
+        grunt.log.ok('npm install nodemon -g');
         done(false);
       }
       grunt.log.writeln(result.stdout);
