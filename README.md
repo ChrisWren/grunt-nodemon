@@ -96,3 +96,8 @@ Type: `string`
 
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
 
+# Changelog
+
+**0.0.0** - Initial release
+
+**0.0.1** - Added warning if `nodemon` isn't installed as a global module
