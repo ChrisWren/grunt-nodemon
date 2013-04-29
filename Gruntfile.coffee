@@ -13,7 +13,7 @@ module.exports = (grunt) ->
           delayTime: 1
       exec:
         options:
-          file: 'test/testfile.txt'
+          file: 'test/test.txt'
           exec: 'touch'
 
     simplemocha:

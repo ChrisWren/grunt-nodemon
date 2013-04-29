@@ -17,7 +17,7 @@ module.exports = function (grunt) {
 
     if (options.exec) {
       command.push('--exec');
-      command.push('"options.exec"');
+      command.push(options.exec);
     }
 
     if (options.delayTime) {
