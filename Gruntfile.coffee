@@ -13,7 +13,20 @@ module.exports = (grunt) ->
           delayTime: 1
       exec:
         options:
-          exec: 'less'
+          file: 'test/testfile.txt'
+          exec: 'touch'
+
+    simplemocha:
+      options:
+        globals: ['should']
+        timeout: 3000
+        ignoreLeaks: false
+        ui: 'bdd'
+        reporter: 'nyan'
+      all:
+        src: ['test/**/*.coffee']
 
   grunt.registerTask 'default', ['nodemon']
+  grunt.registerTask 'test', ['simplemocha']
+  grunt.loadNpmTasks 'grunt-simple-mocha'
   grunt.loadTasks 'tasks'
