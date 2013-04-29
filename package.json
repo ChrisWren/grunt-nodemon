@@ -4,7 +4,7 @@
   "description": "Grunt task to run a nodemon monitor of your node.js server",
   "main": "test/server.js",
   "scripts": {
-    "test": "grunt nodemon & sleep 5s;"
+    "test": "grunt nodemon:prod & sleep 1s;kill -9 `pgrep node`; grunt nodemon:exec & sleep 1s; kill -9 `pgrep node`; grunt test;"
   },
   "repository": {
     "type": "git",
