@@ -60,8 +60,9 @@ A common use case is to run `nodemon` with other tasks concurrently. This can be
 concurrent: {
   target: {
     tasks: ['nodemon', 'watch'],
-    logConcurrentOutput: true
-  }
+    options: {
+      logConcurrentOutput: true
+    }
 }
 ```
 ### Options
