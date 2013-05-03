@@ -26,9 +26,9 @@ module.exports = (grunt) ->
       all:
         src: ['test/**/*.coffee']
       test1:
-	src: ['test/**/test1.coffee']
+        src: ['test/**/test1.coffee']
       test2:
-	src: ['test/**/test2.coffee']
+        src: ['test/**/test2.coffee']
 
   grunt.registerTask 'default', ['nodemon']
   grunt.registerTask 'test', ['simplemocha']
