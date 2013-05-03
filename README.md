@@ -1,5 +1,7 @@
 # grunt-nodemon
-[![NPM version](https://badge.fury.io/js/grunt-nodemon.png)](http://badge.fury.io/js/grunt-nodemon) ![Travis Status](https://travis-ci.org/ChrisWren/grunt-nodemon.png)
+[![NPM version](https://badge.fury.io/js/grunt-nodemon.png)](http://badge.fury.io/js/grunt-nodemon)  
+[![Dependency Status](https://gemnasium.com/ChrisWren/grunt-nodemon.png)](https://gemnasium.com/ChrisWren/grunt-nodemon)   
+![Travis Status](https://travis-ci.org/ChrisWren/grunt-nodemon.png)  
 
 > Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow.
 
