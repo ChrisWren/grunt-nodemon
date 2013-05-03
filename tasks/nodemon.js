@@ -12,8 +12,12 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('nodemon', 'Starts a nodemon server.', function () {
 
     var command = [];
-    var options = this.options();
     var done = this.async();
+    var options = {
+      ignoredFiles: [] // default is to not ignore any files (js files also by default)
+    };
+
+    options = grunt.util._.extend(options, this.options());
 
     if (options.exec) {
       command.push('--exec');
