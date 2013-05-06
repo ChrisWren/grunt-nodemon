@@ -19,13 +19,6 @@ grunt.loadNpmTasks('grunt-nodemon');
 
 ## Documentation
 
-### Dependencies
-The only non-grunt dependency of grunt-nodemon is the nodemon module. If you don't have nodemon installed, install it globally with this command:
-
-```shell
-npm install nodemon -g
-```
-
 ### Usage
 The minimal usage of nodemon runs with no options:
 ```js
