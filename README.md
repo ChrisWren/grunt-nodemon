@@ -112,3 +112,6 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 **0.0.2** - Removes `.nodemonignore` if it was previously generated and then the `ignoredFiles` option is removed 
 
 **0.0.3** - Uses local version of `nodemon` for convenience and versioning
+
+**0.0.4** - Added `nodemon` as a proper dependency
+
