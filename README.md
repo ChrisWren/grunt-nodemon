@@ -59,6 +59,7 @@ concurrent: {
     options: {
       logConcurrentOutput: true
     }
+  }
 }
 ```
 ### Options
