@@ -79,9 +79,9 @@ Type: `Array` of `string globs`
 This is a list of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
 
 ### watchedExtensions
-Type: `Array` of `strings` Default: `'js'`
+Type: `Array` of `strings`
 
-This is a list of file extensions to watch for changes. By default nodemon only watches JavaScript files.
+This is a list of file extensions to watch for changes. By default, nodemon watches `.js`, `.coffee`, and `.litcoffee` files.
 
 ### watchedFolders
 Type: `Array` of `strings` Default: `'.'`
