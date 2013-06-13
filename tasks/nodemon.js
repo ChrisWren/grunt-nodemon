@@ -63,12 +63,18 @@ module.exports = function (grunt) {
       });
     }
 
+    var spawnOpts = {
+      stdio: 'inherit'
+    };
+
+    if (options.cwd) {
+      spawnOpts.cwd = options.cwd;
+    }
+
     grunt.util.spawn({
       cmd: 'node',
       args: command,
-      opts: {
-        stdio: 'inherit'
-      }
+      opts: spawnOpts
     },
     function (error, result) {
       if (error) {

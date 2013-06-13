@@ -39,7 +39,8 @@ nodemon: {
       watchedExtensions: ['js', 'coffee'],
       watchedFolders: ['test', 'tasks'],
       debug: true,
-      delayTime: 1
+      delayTime: 1,
+      cwd: __dirname
     }
   },
   exec: {
@@ -97,6 +98,11 @@ Optionally launch the node.js debug server.
 Type: `Number`
 
 Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file.
+
+### cwd
+Type: `String`
+
+Optional configuration to change the current working directory.
 
 ### exec
 Type: `string`
