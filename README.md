@@ -65,27 +65,27 @@ concurrent: {
 ### Options
 
 #### file
-Type: `string`
+Type: `String`
 
 This is file that nodemon runs and restarts when changes are detected.
 
 ### args
-Type: `Array` of `strings`
+Type: `Array` of `Strings`
 
 This is the list of arguments to be passed to your file.
 
 ### ignoredFiles
-Type: `Array` of `string globs`
+Type: `Array` of `String globs`
 
 This is a list of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
 
 ### watchedExtensions
-Type: `Array` of `strings`
+Type: `Array` of `Strings`
 
 This is a list of file extensions to watch for changes. By default, nodemon watches `.js`, `.coffee`, and `.litcoffee` files.
 
 ### watchedFolders
-Type: `Array` of `strings` Default: `'.'`
+Type: `Array` of `Strings` Default: `'.'`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
 
@@ -105,19 +105,20 @@ Type: `String`
 Optional configuration to change the current working directory.
 
 ### exec
-Type: `string`
+Type: `String`
 
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
 
 # Changelog
 
-**0.0.0** - Initial release
-
-**0.0.1** - Added warning if `nodemon` isn't installed as a global module
-
-**0.0.2** - Removes `.nodemonignore` if it was previously generated and then the `ignoredFiles` option is removed 
-
-**0.0.3** - Uses local version of `nodemon` for convenience and versioning
+**0.0.5** - Added `cwd` option
 
 **0.0.4** - Added `nodemon` as a proper dependency
 
+**0.0.3** - Uses local version of `nodemon` for convenience and versioning
+
+**0.0.2** - Removes `.nodemonignore` if it was previously generated and then the `ignoredFiles` option is removed 
+
+**0.0.1** - Added warning if `nodemon` isn't installed as a global module
+
+**0.0.0** - Initial release
