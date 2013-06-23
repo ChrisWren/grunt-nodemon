@@ -1,5 +1,5 @@
 # grunt-nodemon
-> Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow.
+> Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow
 
 [![NPM version](https://badge.fury.io/js/grunt-nodemon.png)](http://badge.fury.io/js/grunt-nodemon)  
 [![Dependency Status](https://gemnasium.com/ChrisWren/grunt-nodemon.png)](https://gemnasium.com/ChrisWren/grunt-nodemon)   
@@ -50,7 +50,7 @@ nodemon: {
   }
 }
 ```
-
+#### Running nodemon concurrently
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab: 
 ```js
 concurrent: {
@@ -67,22 +67,22 @@ concurrent: {
 #### file
 Type: `String`
 
-This is file that nodemon runs and restarts when changes are detected.
+File that nodemon runs and restarts when changes are detected.
 
 ### args
 Type: `Array` of `Strings`
 
-This is the list of arguments to be passed to your file.
+List of arguments to be passed to your file.
 
 ### ignoredFiles
 Type: `Array` of `String globs`
 
-This is a list of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
+List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
 
 ### watchedExtensions
 Type: `Array` of `Strings`
 
-This is a list of file extensions to watch for changes. By default, nodemon watches `.js`, `.coffee`, and `.litcoffee` files.
+List of file extensions to watch for changes. By default, nodemon watches `.js`, `.coffee`, and `.litcoffee` files.
 
 ### watchedFolders
 Type: `Array` of `Strings` Default: `'.'`
