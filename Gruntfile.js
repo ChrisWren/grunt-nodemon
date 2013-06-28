@@ -9,7 +9,10 @@ module.exports = function(grunt) {
           watchedExtensions: ['js', 'coffee'],
           watchedFolders: ['test', 'tasks'],
           debug: true,
-          delayTime: 1
+          delayTime: 1,
+          env: {
+            PORT: '8181'
+          }
         }
       },
       exec: {

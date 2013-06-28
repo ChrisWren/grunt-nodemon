@@ -40,6 +40,9 @@ nodemon: {
       watchedFolders: ['test', 'tasks'],
       debug: true,
       delayTime: 1,
+      env: {
+        PORT: '8181'
+      },
       cwd: __dirname
     }
   },
@@ -102,7 +105,12 @@ Delay the restart of nodemon by a number of seconds when compiling a large amoun
 ### cwd
 Type: `String`
 
-Optional configuration to change the current working directory.
+The current working directory to run your file from.
+
+### env
+Type: `Object`
+
+Hash of environment variables to pass to your file.
 
 ### exec
 Type: `String`
