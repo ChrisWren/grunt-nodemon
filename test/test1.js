@@ -1,5 +1,5 @@
-var fs = require('fs'),
-should = require('should');
+var fs = require('fs');
+var should = require('should');
 
 after(function() {
   fs.unlink('./test/test.txt');
