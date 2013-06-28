@@ -94,6 +94,11 @@ Type: `Boolean`
 
 Optionally launch the node.js debug server.
 
+### debugBreak
+Type: `Boolean`
+
+Optionally launch the node.js debug server, automatically setting a breakpoint on the first line (using `--debug-brk`).
+
 ### delayTime
 Type: `Number`
 
