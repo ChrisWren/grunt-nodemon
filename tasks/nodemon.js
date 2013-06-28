@@ -55,6 +55,8 @@ module.exports = function (grunt) {
 
     if (options.debug) command.push('--debug');
 
+    if (options.debugBreak) command.push('--debug-brk');
+
     if (options.file) command.push(options.file);
 
     if (options.args) {
