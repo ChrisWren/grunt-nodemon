@@ -124,6 +124,8 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
+**0.0.7** - Added `debugBreak` option
+
 **0.0.6** - Added `env` option
 
 **0.0.5** - Added `cwd` option
