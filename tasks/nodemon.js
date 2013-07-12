@@ -87,7 +87,7 @@ module.exports = function (grunt) {
     },
     function (error, result) {
       if (error) {
-        grunt.log.error(result.stderr);
+        grunt.fail.fatal('nodemon must be installed as a local dependency of grunt-nodemon.\n\n Run the following command:\n rm -rf node_modules/nodemon\n\n Then run:\n npm install grunt-nodemon --save-dev');
         done(false);
       }
       grunt.log.writeln(result.stdout);
