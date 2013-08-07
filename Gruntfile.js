@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     nodemon: {
       all: {
         options: {
-          file: 'test/server.js',
+          file: 'test/fixtures/server.js',
           args: ['production'],
           ignoredFiles: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js', 'coffee', 'litcoffee'],
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
       cwd: {
         options: {
           file: 'server.js',
-          cwd: 'test/',
+          cwd: 'test/fixtures',
           ignoredFiles: ['README.md', 'node_modules/**']
         }
       },
@@ -28,13 +28,13 @@ module.exports = function (grunt) {
     simplemocha: {
       options: {
         globals: ['should'],
-        timeout: 3000,
+        timeout: 10000,
         ignoreLeaks: false,
         ui: 'bdd',
         reporter: 'spec'
       },
       all: {
-        src: ['test/**/*.js']
+        src: ['test/integrationTests.js']
       }
     },
     jshint: {

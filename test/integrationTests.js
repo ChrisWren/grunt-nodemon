@@ -10,7 +10,7 @@ function runNodemon(target, done) {
   nodemonProcess.stdout.setEncoding('utf8');
   nodemonProcess.stdout.on('data', function (data) {
     logOutput += data;
-    if (data.match(/Server running/)) {
+    if (data.match(/Server/)) {
       nodemonProcess.kill();
       done();
     }
@@ -40,9 +40,9 @@ describe('grunt-nodemon', function () {
 
       it('should generate the correct .nodemonignore file in the cwd folder', function() {
         var fixtureFile = fs.readFileSync('test/fixtures/.nodemonignoreTest', 'utf8'),
-        generatedFile = fs.readFileSync('test/.nodemonignore', 'utf8');
+        generatedFile = fs.readFileSync('test/fixtures/.nodemonignore', 'utf8');
         generatedFile.should.equal(fixtureFile);
-        fs.unlink('test/.nodemonignore');
+        fs.unlink('test/fixtures/.nodemonignore');
       });
     });
   });

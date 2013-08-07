@@ -2,7 +2,7 @@
   "name": "grunt-nodemon",
   "version": "0.0.9",
   "description": "Grunt task to run a nodemon monitor of your node.js server",
-  "main": "test/server.js",
+  "main": "test/fixtures/server.js",
   "scripts": {
     "test": "grunt test"
   },
