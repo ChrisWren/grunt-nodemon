@@ -7,7 +7,7 @@ module.exports = function (grunt) {
           file: 'test/fixtures/server.js',
           args: ['production'],
           ignoredFiles: ['README.md', 'node_modules/**'],
-          watchedExtensions: ['js', 'coffee', 'litcoffee'],
+          watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
           debug: true,
           delayTime: 1,
