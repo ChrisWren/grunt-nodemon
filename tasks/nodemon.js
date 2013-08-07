@@ -55,11 +55,7 @@ module.exports = function (grunt) {
 
     if (options.watchedExtensions) {
       args.push('-e');
-      var extensionList = '';
-      options.watchedExtensions.forEach(function (extensions) {
-        extensionList += extensions + ','
-      });
-      args.push(extensionList.slice(0, -1));
+      args.push(options.watchedExtensions.join(','));
     }
 
     if (options.debug) args.push('--debug');
