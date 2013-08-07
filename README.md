@@ -36,7 +36,7 @@ nodemon: {
       file: 'test/server.js',
       args: ['production'],
       ignoredFiles: ['README.md', 'node_modules/**'],
-      watchedExtensions: ['js', 'coffee'],
+      watchedExtensions: ['js'],
       watchedFolders: ['test', 'tasks'],
       debug: true,
       delayTime: 1,
@@ -123,6 +123,8 @@ Type: `String`
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
 
 # Changelog
+
+**0.0.9** - Fixed bug when using `cwd` with `ignoredFiles`.
 
 **0.0.8** - Added error logging for incorrectly installed `nodemon`.
 
