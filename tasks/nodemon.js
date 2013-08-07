@@ -1,3 +1,4 @@
+/*jshint multistr: true */
 /*
  * grunt-nodemon
  * https://github.com/ChrisWren/grunt-nodemon
@@ -21,7 +22,7 @@ module.exports = function (grunt) {
     }
 
     if (options.delayTime) {
-      args.push('--delay')
+      args.push('--delay');
       args.push(options.delayTime);
     }
 
@@ -110,4 +111,4 @@ module.exports = function (grunt) {
       done();
     });
   });
-}
+};

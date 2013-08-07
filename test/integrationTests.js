@@ -1,17 +1,28 @@
+/*jshint expr: true*/
 var fs    = require('fs');
 var spawn = require('child_process').spawn;
 
-var should = require('should');
+require('should');
+
+function runNodemon(target, done) {
+  var logOutput = '';
+  var nodemonProcess = spawn('grunt', ['nodemon:' + target]);
+  nodemonProcess.stdout.setEncoding('utf8');
+  nodemonProcess.stdout.on('data', function (data) {
+    logOutput += data;
+    if (data.match(/Server running/)) {
+      nodemonProcess.kill();
+      done();
+    }
+  });
+}
 
 describe('grunt-nodemon', function () {
 
-  describe('when run  with the ignoredFiles option', function() {
+  describe('when run with the ignoredFiles option', function() {
 
     before(function (done) {
-      var nodemonProcess = spawn('grunt', ['nodemon:all']);
-      setTimeout(function() {
-        done();
-      }, 1000);
+      runNodemon('all', done);
     });
 
     it('should generate the correct .nodemonignore file', function() {
@@ -24,10 +35,7 @@ describe('grunt-nodemon', function () {
     describe('when the cwd option is also specified', function() {
 
       before(function (done) {
-        var nodemonProcess = spawn('grunt', ['nodemon:cwd']);
-        setTimeout(function() {
-          done();
-        }, 1000);
+        runNodemon('cwd', done);
       });
 
       it('should generate the correct .nodemonignore file in the cwd folder', function() {
@@ -43,31 +51,11 @@ describe('grunt-nodemon', function () {
 
     before(function (done) {
       fs.writeFileSync('.nodemonignore', '');
-      var nodemonProcess = spawn('grunt', ['nodemon:empty']);
-
-      setTimeout(function() {
-        done();
-      }, 1000);
+      runNodemon('empty', done);
     });
 
     it('the .nodemonignore file is removed', function() {
       fs.existsSync('.nodemonignore').should.beFalsy;
-    });
-  });
-
-  describe('when run with the exec option', function() {
-
-    before(function (done) {
-      var nodemonProcess = spawn('grunt', ['nodemon:exec']);
-      setTimeout(function() {
-        done();
-      }, 1000);
-    });
-
-    it('should executed the non-node command as expected', function() {
-      var touchedFile = fs.readFileSync('test/test.txt', 'utf8');
-      touchedFile.should.exist;
-      fs.unlink('test/test.txt');
     });
   });
 });
