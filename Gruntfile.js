@@ -1,12 +1,12 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     nodemon: {
-      prod: {
+      all: {
         options: {
           file: 'test/server.js',
           args: ['production'],
           ignoredFiles: ['README.md', 'node_modules/**'],
-          watchedExtensions: ['js', 'coffee'],
+          watchedExtensions: ['js', 'coffee', 'litcoffee'],
           watchedFolders: ['test', 'tasks'],
           debug: true,
           delayTime: 1,
@@ -20,7 +20,15 @@ module.exports = function(grunt) {
           file: 'test/test.txt',
           exec: 'touch'
         }
-      }
+      },
+      cwd: {
+        options: {
+          file: 'server.js',
+          cwd: 'test/',
+          ignoredFiles: ['README.md', 'node_modules/**']
+        }
+      },
+      empty: {}
     },
     simplemocha: {
       options: {
@@ -32,12 +40,6 @@ module.exports = function(grunt) {
       },
       all: {
         src: ['test/**/*.js']
-      },
-      test1: {
-        src: ['test/**/test1.js']
-      },
-      test2: {
-        src: ['test/**/test2.js']
       }
     }
   });
