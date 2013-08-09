@@ -35,6 +35,7 @@ nodemon: {
     options: {
       file: 'test/server.js',
       args: ['production'],
+      nodeArgs: ['--trace-gc', '--nouse_idle_notification', '--expose_gc'],
       ignoredFiles: ['README.md', 'node_modules/**'],
       watchedExtensions: ['js'],
       watchedFolders: ['test', 'tasks'],
@@ -76,6 +77,11 @@ File that nodemon runs and restarts when changes are detected.
 Type: `Array` of `Strings`
 
 List of arguments to be passed to your file.
+
+### nodeArgs
+Type: `Array` of `Strings`
+
+List of arguments to be passed to ```node```.
 
 ### ignoredFiles
 Type: `Array` of `String globs`
