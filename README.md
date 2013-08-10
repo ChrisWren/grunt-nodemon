@@ -130,6 +130,8 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
+**0.0.10** - Added `nodeArgs` option.
+
 **0.0.9** - Fixed bug when using `cwd` with `ignoredFiles`.
 
 **0.0.8** - Added error logging for incorrectly installed `nodemon`.
