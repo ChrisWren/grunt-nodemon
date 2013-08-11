@@ -35,11 +35,10 @@ nodemon: {
     options: {
       file: 'test/server.js',
       args: ['production'],
-      nodeArgs: ['--trace-gc', '--nouse_idle_notification', '--expose_gc'],
+      nodeArgs: ['--debug'],
       ignoredFiles: ['README.md', 'node_modules/**'],
       watchedExtensions: ['js'],
       watchedFolders: ['test', 'tasks'],
-      debug: true,
       delayTime: 1,
       env: {
         PORT: '8181'
@@ -81,7 +80,7 @@ List of arguments to be passed to your file.
 ### nodeArgs
 Type: `Array` of `Strings`
 
-List of arguments to be passed to ```node```.
+List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server. 
 
 ### ignoredFiles
 Type: `Array` of `String globs`
@@ -97,16 +96,6 @@ List of file extensions to watch for changes. By default, nodemon watches `.js`,
 Type: `Array` of `Strings` Default: `'.'`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
-
-### debug
-Type: `Boolean`
-
-Optionally launch the node.js debug server.
-
-### debugBreak
-Type: `Boolean`
-
-Optionally launch the node.js debug server, automatically setting a breakpoint on the first line (using `--debug-brk`).
 
 ### delayTime
 Type: `Number`

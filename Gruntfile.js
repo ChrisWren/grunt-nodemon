@@ -6,10 +6,10 @@ module.exports = function (grunt) {
         options: {
           file: 'test/fixtures/server.js',
           args: ['production'],
+          nodeArgs: ['--debug'],
           ignoredFiles: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
-          debug: true,
           delayTime: 1,
           env: {
             PORT: '8181'

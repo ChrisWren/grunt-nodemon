@@ -65,14 +65,6 @@ module.exports = function (grunt) {
       args.push(options.watchedExtensions.join(','));
     }
 
-    if (options.debug) {
-      args.push('--debug');
-    }
-
-    if (options.debugBreak) {
-      args.push('--debug-brk');
-    }
-
     if (options.file) {
       args.push(options.file);
     }
