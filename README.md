@@ -119,6 +119,12 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
+**0.1.0** - Removed `debug` and `debugBrk` options as they are encapsulated by the `nodeArgs` option.
+
+**Breaking changes:**
+
+- Configs with the `debug` or `debugBrk` options will no longer work as expected. They simply need to be added to `nodeArgs`.
+
 **0.0.10** - Added `nodeArgs` option.
 
 **0.0.9** - Fixed bug when using `cwd` with `ignoredFiles`.
