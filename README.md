@@ -123,13 +123,13 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 - Configs with the `debug` or `debugBrk` options will no longer work as expected. They simply need to be added to `nodeArgs`.
 
-**0.0.10** - Added `nodeArgs` option.
+**0.0.10** - Added `nodeArgs` option thanks to [@eugeneiiim](https://github.com/eugeneiiim).
 
 **0.0.9** - Fixed bug when using `cwd` with `ignoredFiles`.
 
 **0.0.8** - Added error logging for incorrectly installed `nodemon`.
 
-**0.0.7** - Added `debugBreak` option.
+**0.0.7** - Added `debugBreak` option thanks to [@bchu](https://github.com/bchu).
 
 **0.0.6** - Added `env` option.
 
