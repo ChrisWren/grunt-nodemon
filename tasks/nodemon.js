@@ -1,4 +1,3 @@
-/*jshint multistr: true */
 /*
  * grunt-nodemon
  * https://github.com/ChrisWren/grunt-nodemon
@@ -96,16 +95,16 @@ module.exports = function (grunt) {
       args: args,
       opts: spawnOpts
     },
-    function (error, result) {
+    function (error) {
       if (error) {
-        grunt.fail.fatal('nodemon must be installed as a local dependency of grunt-nodemon.\n\n\
-                          Run the following command:\n\
-                          rm -rf node_modules/nodemon\n\n\
-                          Then run:\n\
-                          npm install grunt-nodemon --save-dev');
-        done(false);
+        grunt.fail.fatal('nodemon must be installed as a local dependency of grunt-nodemon.\n\n' +
+
+                         'Run the following command:\n' +
+                         'rm -rf node_modules/nodemon\n\n' +
+
+                         'Then run:\n' +
+                         'npm install grunt-nodemon --save-dev');
       }
-      grunt.log.writeln(result.stdout);
       done();
     });
   });
