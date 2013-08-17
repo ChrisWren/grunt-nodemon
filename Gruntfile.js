@@ -25,6 +25,7 @@ module.exports = function (grunt) {
       },
       empty: {}
     },
+    mdlint: ['README.md'],
     simplemocha: {
       options: {
         globals: ['should'],
@@ -70,7 +71,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['nodemon']);
-  grunt.registerTask('test', ['jshint', 'simplemocha']);
+  grunt.registerTask('test', ['jshint', 'mdlint', 'simplemocha']);
 
   grunt.loadTasks('tasks');
 

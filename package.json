@@ -26,7 +26,8 @@
     "should": "~1.2.2",
     "grunt-release": "~0.5.1",
     "grunt-contrib-jshint": "~0.6.2",
-    "matchdep": "~0.1.2"
+    "matchdep": "~0.1.2",
+    "grunt-mdlint": "0.0.0"
   },
   "dependencies": {
     "nodemon": "~0.7.8"
