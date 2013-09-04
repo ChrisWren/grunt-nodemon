@@ -31,6 +31,10 @@ module.exports = function (grunt) {
       args.push(options.delayTime);
     }
 
+    if (options.legacyWatch) {
+      args.push('--legacy-watch');
+    }
+
     if (options.ignoredFiles) {
       var fileContent = nodemonignoreMessage + '\n';
       options.ignoredFiles.forEach(function (ignoredGlob) {

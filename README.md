@@ -38,6 +38,7 @@ nodemon: {
       watchedExtensions: ['js'],
       watchedFolders: ['test', 'tasks'],
       delayTime: 1,
+      legacyWatch: true,
       env: {
         PORT: '8181'
       },
@@ -52,7 +53,7 @@ nodemon: {
 }
 ```
 #### Running nodemon concurrently
-A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab: 
+A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 ```js
 concurrent: {
   target: {
@@ -78,7 +79,7 @@ List of arguments to be passed to your file.
 ### nodeArgs
 Type: `Array` of `Strings`
 
-List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server. 
+List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server.
 
 ### ignoredFiles
 Type: `Array` of `String globs`
@@ -99,6 +100,11 @@ List of folders to watch for changes if you don't want to watch the root folder 
 Type: `Number`
 
 Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file.
+
+### legacyWatch
+Type: `Boolean`
+
+If you wish to force nodemon to start with the legacy watch method. See <https://github.com/remy/nodemon#help-my-changes-arent-being-detected> for more details.
 
 ### cwd
 Type: `String`
