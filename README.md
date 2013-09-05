@@ -123,6 +123,8 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
+**0.1.1** - Added `legacyWatch` option thanks to [@jonursenbach](https://github.com/jonursenbach).
+
 **0.1.0** - Removed `debug` and `debugBrk` options as they are encapsulated by the `nodeArgs` option.
 
 **Breaking changes:**
