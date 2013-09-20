@@ -29,7 +29,7 @@ Here is a config that uses all of the available options for nodemon:
 
 ```js
 nodemon: {
-  prod: {
+  dev: {
     options: {
       file: 'test/server.js',
       args: ['production'],
@@ -56,7 +56,7 @@ nodemon: {
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 ```js
 concurrent: {
-  target: {
+  dev: {
     tasks: ['nodemon', 'watch'],
     options: {
       logConcurrentOutput: true
