@@ -53,11 +53,11 @@ nodemon: {
 }
 ```
 #### Running nodemon concurrently
-A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
+A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 ```js
 concurrent: {
   dev: {
-    tasks: ['nodemon', 'watch'],
+    tasks: ['nodemon', 'node-inspector', 'watch'],
     options: {
       logConcurrentOutput: true
     }
