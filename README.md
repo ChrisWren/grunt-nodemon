@@ -25,18 +25,36 @@ nodemon: {
 ```
 When this is run, nodemon will look at the `package.json` file for the `main` property and run its value as a command in node.
 
-Here is a config that uses all of the available options for nodemon:
+### Common Usage
+
+This config will start a node server located at `server.js` with the `--debug` node argument to allow for debugging and pass the PORT environment variable.
 
 ```js
 nodemon: {
   dev: {
     options: {
-      file: 'test/server.js',
-      args: ['production'],
+      file: 'server.js',
       nodeArgs: ['--debug'],
-      ignoredFiles: ['README.md', 'node_modules/**'],
+      env: {
+        PORT: '8282'
+      }
+    }
+  }
+}
+```
+
+### Example with all available options
+
+```js
+nodemon: {
+  dev: {
+    options: {
+      file: 'server.js',
+      args: ['dev'],
+      nodeArgs: ['--debug'],
+      ignoredFiles: ['node_modules/**'],
       watchedExtensions: ['js'],
-      watchedFolders: ['test', 'tasks'],
+      watchedFolders: ['server'],
       delayTime: 1,
       legacyWatch: true,
       env: {
@@ -52,7 +70,9 @@ nodemon: {
   }
 }
 ```
+
 #### Running nodemon concurrently
+
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 ```js
 concurrent: {
@@ -64,6 +84,7 @@ concurrent: {
   }
 }
 ```
+
 ### Options
 
 #### file
