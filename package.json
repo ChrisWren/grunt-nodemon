@@ -30,6 +30,6 @@
     "grunt-mdlint": "0.0.0"
   },
   "dependencies": {
-    "nodemon": "~0.7.8"
+    "nodemon": "~1.0.8"
   }
 }

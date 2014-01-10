@@ -4,7 +4,7 @@ module.exports = function (grunt) {
     nodemon: {
       all: {
         options: {
-          file: 'test/fixtures/server.js',
+          file: 'server.js',
           args: ['production'],
           nodeArgs: ['--debug'],
           ignoredFiles: ['README.md', 'node_modules/**'],
@@ -14,17 +14,19 @@ module.exports = function (grunt) {
           legacyWatch: true,
           env: {
             PORT: '8181'
+          },
+          cwd: __dirname + '/test/fixtures',
+          eventsCallback: function (eventName, event) {
+            console.log('custom logging');
+            if (eventName === 'log') {
+              console.log(event.message);
+            } else {
+              console.log(event);
+            }
           }
         }
       },
-      cwd: {
-        options: {
-          file: 'server.js',
-          cwd: 'test/fixtures',
-          ignoredFiles: ['README.md', 'node_modules/**']
-        }
-      },
-      empty: {}
+      none: {}
     },
     mdlint: ['README.md'],
     simplemocha: {
