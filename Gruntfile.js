@@ -11,6 +11,8 @@ module.exports = function (grunt) {
           watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
           delayTime: 1,
+          nostdin: true,
+          exitcrash: true,
           legacyWatch: true,
           env: {
             PORT: '8181'

@@ -39,6 +39,14 @@ module.exports = function (grunt) {
       args.push(options.execMap);
     }
 
+    if (options.exitcrash) {
+      args.push('--exitcrash');
+    }
+
+    if (options.nostdin) {
+      args.push('--no-stdin');
+    }
+
     if (options.delayTime) {
       args.push('--delay');
       args.push(options.delayTime);
@@ -60,10 +68,6 @@ module.exports = function (grunt) {
       args.push(options.watchedExtensions.join(','));
     }
 
-    if (options.exitcrash) {
-      args.push('--exitcrash');
-    }
-
     if (options.cwd) {
       args.push('--cwd');
       args.push(options.cwd);
@@ -78,10 +82,6 @@ module.exports = function (grunt) {
 
     if (options.file) {
       args.push(options.file);
-    }
-
-    if (options.nostdin) {
-      args.push('--no-stdin');
     }
 
     if (options.args) {
