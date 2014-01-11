@@ -103,6 +103,18 @@ Type: `Array` of `Strings`
 
 List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server.
 
+### eventCallback
+Type:  `function`
+Default:
+
+```js
+function (eventName, eventContent) {
+  
+}
+```
+
+Callback which receives an `eventName` string and `eventContent` object. This can be used to respond to changes in the running app, like LiveReloading when the app restarts.
+
 ### ignoredFiles
 Type: `Array` of `String globs`
 
@@ -143,7 +155,15 @@ Type: `String`
 
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
 
+### execMap
+Type: `object`
+Default: { js: 'node', }
+
+Defines the executable to be run based on the file extension.
+
 # Changelog
+
+**0.2.0** - Updated to nodemon 1.0, added new [`execMap`](#execMap) and [`eventCallback`](#eventCallback) options.
 
 **0.1.2** - `nodemon` can now be listed as a dependency in the package.json and grunt-nodemon will resolve the nodemon.js file's location correctly.
 
