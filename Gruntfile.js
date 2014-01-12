@@ -4,20 +4,22 @@ module.exports = function (grunt) {
     nodemon: {
       all: {
         options: {
+          cwd: __dirname + '/test/fixtures',
           file: 'server.js',
-          args: ['production'],
-          nodeArgs: ['--debug'],
-          ignoredFiles: ['README.md', 'node_modules/**'],
+          ignored: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
           delayTime: 1,
           nostdin: true,
           exitcrash: true,
           legacyWatch: true,
-          env: {
-            PORT: '8181'
+          execOptions: {
+            args: ['production'],
+            nodeArgs: ['--debug'],
+            env: {
+              PORT: '8181'
+            }
           },
-          cwd: __dirname + '/test/fixtures',
           eventsCallback: function (eventName, event) {
             console.log('custom logging');
             if (eventName === 'log') {

@@ -90,27 +90,35 @@ module.exports = function (grunt) {
       });
     }
 
-    nodemon(args.join(' '));
-
-    if (options.eventsCallback) {
-      [
-        'start',
-        'crash',
-        'exit',
-        'restart',
-        'log',
-        'config:update'
-      ].forEach(function (eventName) {
-        nodemon.on(eventName, function (event) {
-          options.eventsCallback(eventName, event);
-        });
-      });
-    } else {
-
-      // Default logging
-      nodemon.on('log', function(event) {
-        console.log(event.message);
-      });
+    if (options.execOptions && !options.execOptions.exec) {
+      options.execOptions.exec = 'exec';
     }
+
+    if (!options.eventsCallback) {
+      options.eventsCallback = function (eventName, eventContent) {
+
+        // By default the nodemon output is logged
+        if (eventName === 'log') {
+          console.log(eventContent.colour);
+        }
+      };
+    }
+
+    console.log(options);
+
+    nodemon(options);
+
+    [
+      'start',
+      'crash',
+      'exit',
+      'restart',
+      'log',
+      'config:update'
+    ].forEach(function (eventName) {
+      nodemon.on(eventName, function (event) {
+        options.eventsCallback(eventName, event);
+      });
+    });
   });
 };
