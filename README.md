@@ -1,8 +1,9 @@
 # grunt-nodemon
+
 > Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow
 
 [![NPM version](https://badge.fury.io/js/grunt-nodemon.png)](http://badge.fury.io/js/grunt-nodemon) [![Dependency Status](https://gemnasium.com/ChrisWren/grunt-nodemon.png)](https://gemnasium.com/ChrisWren/grunt-nodemon) [![Travis Status](https://travis-ci.org/ChrisWren/grunt-nodemon.png)](https://travis-ci.org/ChrisWren/grunt-nodemon)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 ## Getting Started
 If you haven't used grunt before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a gruntfile as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 ```shell
@@ -18,23 +19,24 @@ grunt.loadNpmTasks('grunt-nodemon');
 ## Documentation
 
 ### Usage
-The minimal usage of nodemon runs with no options:
-```js
-nodemon: {
-  dev: {}
-}
-```
-When this is run, nodemon will look at the `package.json` file for the `main` property and run its value as a command in node.
-
-### Common Usage
-
-This config will start a node server located at `server.js` with the `--debug` node argument to allow for debugging and pass the PORT environment variable.
+The minimal usage of nodemon runs with a `script` specified:
 
 ```js
 nodemon: {
   dev: {
+    script: 'index.js'
+  }
+}
+```
+
+### Common Usage
+This config will start a node server located at `index.js` with the `--debug` node argument to allow for debugging and pass the PORT environment variable.
+
+```js
+nodemon: {
+  dev: {
+    script: 'index.js',
     options: {
-      file: 'server.js',
       nodeArgs: ['--debug'],
       env: {
         PORT: '8282'
@@ -49,8 +51,8 @@ nodemon: {
 ```js
 nodemon: {
   dev: {
+    script: 'index.js',
     options: {
-      file: 'server.js',
       args: ['dev'],
       nodeArgs: ['--debug'],
       ignoredFiles: ['node_modules/**'],
@@ -85,13 +87,14 @@ concurrent: {
   }
 }
 ```
+### Required properties
 
-### Options
-
-#### file
+#### script
 Type: `String`
 
-File that nodemon runs and restarts when changes are detected.
+Script that nodemon runs and restarts when changes are detected.
+
+### Options
 
 ### args
 Type: `Array` of `Strings`
@@ -108,14 +111,17 @@ Type:  `function`
 Default:
 
 ```js
-function (eventName, eventContent) {
-  
-}
+function(eventName, eventContent) {
+  // By default the nodemon output is logged
+  if (eventName === 'log') {
+    console.log(eventContent.colour);
+  }
+};
 ```
 
-Callback which receives an `eventName` string and `eventContent` object. This can be used to respond to changes in the running app, like LiveReloading when the app restarts.
+Callback which receives an `eventName` string and an `eventContent` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts.
 
-### ignoredFiles
+### ignored
 Type: `Array` of `String globs`
 
 List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
@@ -133,7 +139,7 @@ List of folders to watch for changes if you don't want to watch the root folder 
 ### delayTime
 Type: `Number`
 
-Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file.
+Delay the restart of nodemon by a number of milliseconds when compiling a large amount of files so that the app doesn't needlessly restart after each file.
 
 ### legacyWatch
 Type: `Boolean`
@@ -154,12 +160,6 @@ Hash of environment variables to pass to your file.
 Type: `String`
 
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
-
-### execMap
-Type: `object`
-Default: { js: 'node', }
-
-Defines the executable to be run based on the file extension.
 
 # Changelog
 
