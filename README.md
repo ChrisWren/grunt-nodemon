@@ -100,7 +100,8 @@ nodemon: {
       env: {
         PORT: '5455'
       },
-      // omit this property if you aren't serving HTML files and don't want to open a browser tab on start
+      // omit this property if you aren't serving HTML files and 
+      // don't want to open a browser tab on start
       callback: function (nodemon) {
         nodemon.on('log', function (event) {
           console.log(event.colour);
@@ -211,7 +212,7 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 **Breaking changes:**
 
-- `options.file` is now `script`, and is a required property. `ignoredFiles` is now `ignored` to match nodemon.
+- `options.file` is now `script` and is a required property. `ignoredFiles` is now `ignored` to match nodemon.
 
 **0.1.2** - `nodemon` can now be listed as a dependency in the package.json and grunt-nodemon will resolve the nodemon.js file's location correctly.
 
