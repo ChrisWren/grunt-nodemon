@@ -64,7 +64,7 @@ nodemon: {
 
 ### Advanced Usage
 
-A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
+A common use case is to run `nodemon` with other tasks concurrently. It is also common to open a browser tab when starting a server, and reload that tab when the server code changes. These workflows can be achieved with the following config, which uses a custom [`options.callback`](#callback) function, and [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 
 ```js
 concurrent: {
