@@ -17,34 +17,19 @@ module.exports = function (grunt) {
 
     options.script = this.data.script;
 
-    var eventsCallback;
+    var callback;
 
-    if (options.eventsCallback) {
-      eventsCallback = options.eventsCallback;
-      delete options.eventsCallback;
+    if (options.callback) {
+      callback = options.callback;
+      delete options.callback;
     } else {
-      eventsCallback = function(eventName, eventContent) {
-
-        // By default the nodemon output is logged
-        if (eventName === 'log') {
-          console.log(eventContent.colour);
-        }
+      callback = function(nodemonApp) {
+        nodemonApp.on('log', function (event) {
+          console.log(event.colour);
+        });
       };
     }
 
-    nodemon(options);
-
-    [
-      'start',
-      'crash',
-      'exit',
-      'restart',
-      'log',
-      'config:update'
-    ].forEach(function (eventName) {
-      nodemon.on(eventName, function (event) {
-        eventsCallback(eventName, event);
-      });
-    });
+    callback(nodemon(options));
   });
 };

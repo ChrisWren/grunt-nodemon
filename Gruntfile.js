@@ -16,20 +16,16 @@ module.exports = function (grunt) {
           env: {
             PORT: '8181'
           },
-          execOptions: {
-            execMap: {
-              rb: 'python'
-            }
-          },
           args: ['production'],
           nodeArgs: ['--debug'],
-          eventsCallback: function (eventName, event) {
-            console.log('custom logging');
-            if (eventName === 'log') {
-              console.log(event.message);
-            } else {
+          callback: function(nodemon) {
+            nodemon.on('log', function(event) {
+              console.log(event.colour);
+            });
+            nodemon.on('config:update', function(event) {
+              console.log('custom logging');
               console.log(event);
-            }
+            });
           }
         }
       },
