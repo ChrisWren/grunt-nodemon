@@ -3,9 +3,9 @@ module.exports = function (grunt) {
   grunt.initConfig({
     nodemon: {
       all: {
+        script: 'server.js',
         options: {
           cwd: __dirname + '/test/fixtures',
-          file: 'server.js',
           ignored: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
@@ -13,13 +13,16 @@ module.exports = function (grunt) {
           nostdin: true,
           exitcrash: true,
           legacyWatch: true,
+          env: {
+            PORT: '8181'
+          },
           execOptions: {
-            args: ['production'],
-            nodeArgs: ['--debug'],
-            env: {
-              PORT: '8181'
+            execMap: {
+              rb: 'python'
             }
           },
+          args: ['production'],
+          nodeArgs: ['--debug'],
           eventsCallback: function (eventName, event) {
             console.log('custom logging');
             if (eventName === 'log') {
@@ -30,7 +33,9 @@ module.exports = function (grunt) {
           }
         }
       },
-      none: {}
+      none: {
+        script: 'test/fixtures/server.js',
+      }
     },
     mdlint: ['README.md'],
     simplemocha: {

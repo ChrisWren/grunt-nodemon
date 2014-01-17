@@ -12,90 +12,18 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('nodemon', 'Runs a nodemon monitor of your node.js server.', function () {
 
-    var options = this.options();
-    var args = [];
     this.async();
+    var options = this.options();
 
-    if (options.nodeArgs) {
-      options.nodeArgs.forEach(function (arg) {
-        args.push(arg);
-      });
-    }
+    options.script = this.data.script;
 
-    if (options.ignoredFiles) {
-      options.ignoredFiles.forEach(function (folder) {
-        args.push('--ignore');
-        args.push(folder);
-      });
-    }
+    var eventsCallback;
 
-    if (options.exec) {
-      args.push('--exec');
-      args.push(options.exec);
-    }
-
-    if (options.execMap) {
-      args.push('--execMap');
-      args.push(options.execMap);
-    }
-
-    if (options.exitcrash) {
-      args.push('--exitcrash');
-    }
-
-    if (options.nostdin) {
-      args.push('--no-stdin');
-    }
-
-    if (options.delayTime) {
-      args.push('--delay');
-      args.push(options.delayTime);
-    }
-
-    if (options.legacyWatch) {
-      args.push('--legacy-watch');
-    }
-
-    if (options.watchedFolders) {
-      options.watchedFolders.forEach(function (folder) {
-        args.push('--watch');
-        args.push(folder);
-      });
-    }
-
-    if (options.watchedExtensions) {
-      args.push('-e');
-      args.push(options.watchedExtensions.join(','));
-    }
-
-    if (options.cwd) {
-      args.push('--cwd');
-      args.push(options.cwd);
-    }
-
-    if (options.env) {
-      var envProps = Object.keys(options.env);
-      envProps.forEach(function (envProp) {
-        args.push(envProp + '=' + options.env[envProp]);
-      });
-    }
-
-    if (options.file) {
-      args.push(options.file);
-    }
-
-    if (options.args) {
-      options.args.forEach(function (arg) {
-        args.push(arg);
-      });
-    }
-
-    if (options.execOptions && !options.execOptions.exec) {
-      options.execOptions.exec = 'exec';
-    }
-
-    if (!options.eventsCallback) {
-      options.eventsCallback = function (eventName, eventContent) {
+    if (options.eventsCallback) {
+      eventsCallback = options.eventsCallback;
+      delete options.eventsCallback;
+    } else {
+      eventsCallback = function(eventName, eventContent) {
 
         // By default the nodemon output is logged
         if (eventName === 'log') {
@@ -103,8 +31,6 @@ module.exports = function (grunt) {
         }
       };
     }
-
-    console.log(options);
 
     nodemon(options);
 
@@ -117,7 +43,7 @@ module.exports = function (grunt) {
       'config:update'
     ].forEach(function (eventName) {
       nodemon.on(eventName, function (event) {
-        options.eventsCallback(eventName, event);
+        eventsCallback(eventName, event);
       });
     });
   });
