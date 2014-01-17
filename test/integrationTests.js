@@ -1,11 +1,10 @@
 /*jshint expr: true*/
-var fs    = require('fs');
 var spawn = require('child_process').spawn;
 
 require('should');
 
+var logOutput = '';
 function runNodemon(target, done) {
-  var logOutput = '';
   var nodemonProcess = spawn('grunt', ['nodemon:' + target]);
   nodemonProcess.stdout.setEncoding('utf8');
   nodemonProcess.stdout.on('data', function (data) {
@@ -19,43 +18,53 @@ function runNodemon(target, done) {
 
 describe('grunt-nodemon', function () {
 
-  describe('when run with the ignoredFiles option', function() {
+  describe('when run with all options specified', function () {
 
     before(function (done) {
       runNodemon('all', done);
     });
 
-    it('should generate the correct .nodemonignore file', function() {
-      var fixtureFile = fs.readFileSync('test/fixtures/.nodemonignoreTest', 'utf8'),
-      generatedFile = fs.readFileSync('.nodemonignore', 'utf8');
-      generatedFile.should.equal(fixtureFile);
-      fs.unlink('.nodemonignore');
+    it('should set arguments to the app correctly', function() {
+      logOutput.should.include('production');
     });
 
-    describe('when the cwd option is also specified', function() {
+    it('should set node arguments correctly', function() {
+      logOutput.should.include('debug');
+    });
 
-      before(function (done) {
-        runNodemon('cwd', done);
-      });
+    it('should set the ignored files correctly', function() {
+      logOutput.should.include('README.md');
+    });
 
-      it('should generate the correct .nodemonignore file in the cwd folder', function() {
-        var fixtureFile = fs.readFileSync('test/fixtures/.nodemonignoreTest', 'utf8'),
-        generatedFile = fs.readFileSync('test/fixtures/.nodemonignore', 'utf8');
-        generatedFile.should.equal(fixtureFile);
-        fs.unlink('test/fixtures/.nodemonignore');
-      });
+    it('should set the watched extensions correctly', function() {
+      logOutput.should.include('tasks');
+    });
+
+    it('should set the delay time correctly', function() {
+      logOutput.should.include('1000');
+    });
+
+    it('should set the legacy watch correctly', function() {
+      logOutput.should.include('legacyWatch: true');
+    });
+
+    it('should set environment variables correctly', function() {
+      logOutput.should.include('Port: 8181');
+    });
+
+    it('should set the eventsCallback correctly', function() {
+      logOutput.should.include('custom logging');
     });
   });
 
-  describe('when the ignoredFiles option is removed after being present', function() {
+  describe('when run with no options specified', function () {
 
     before(function (done) {
-      fs.writeFileSync('.nodemonignore', '');
-      runNodemon('empty', done);
+      runNodemon('none', done);
     });
 
-    it('the .nodemonignore file is removed', function() {
-      fs.existsSync('.nodemonignore').should.beFalsy;
+    it('should log nodemon output', function() {
+      logOutput.should.include('debug');
     });
   });
 });

@@ -3,28 +3,39 @@ module.exports = function (grunt) {
   grunt.initConfig({
     nodemon: {
       all: {
+        script: 'server.js',
         options: {
-          file: 'test/fixtures/server.js',
-          args: ['production'],
-          nodeArgs: ['--debug'],
-          ignoredFiles: ['README.md', 'node_modules/**'],
+          cwd: __dirname + '/test/fixtures',
+          ignored: ['README.md', 'node_modules/**'],
           watchedExtensions: ['js', 'md'],
           watchedFolders: ['test', 'tasks'],
           delayTime: 1,
+          nostdin: true,
+          exitcrash: true,
           legacyWatch: true,
           env: {
             PORT: '8181'
+          },
+          execOptions: {
+            execMap: {
+              rb: 'python'
+            }
+          },
+          args: ['production'],
+          nodeArgs: ['--debug'],
+          eventsCallback: function (eventName, event) {
+            console.log('custom logging');
+            if (eventName === 'log') {
+              console.log(event.message);
+            } else {
+              console.log(event);
+            }
           }
         }
       },
-      cwd: {
-        options: {
-          file: 'server.js',
-          cwd: 'test/fixtures',
-          ignoredFiles: ['README.md', 'node_modules/**']
-        }
-      },
-      empty: {}
+      none: {
+        script: 'test/fixtures/server.js',
+      }
     },
     mdlint: ['README.md'],
     simplemocha: {
