@@ -89,11 +89,20 @@ nodemon: {
     script: 'index.js',
     options: {
       nodeArgs: ['--debug'],
+      env: {
+        PORT: '5455'
+      },
       callback: function (nodemon) {
         nodemon.on('log', function (event) {
           console.log(event.colour);
         });
+        
+        // opens browser on initial server start
+        nodemon.on('config:update', function () {
+          require('open')('http://localhost:5455');
+        });
 
+        // refreshes browser when server reboots
         nodemon.on('restart', function () {
           grunt.file.write('.grunt/rebooted', 'rebooted');
         });
