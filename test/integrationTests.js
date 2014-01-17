@@ -52,7 +52,7 @@ describe('grunt-nodemon', function () {
       logOutput.should.include('Port: 8181');
     });
 
-    it('should set the eventsCallback correctly', function() {
+    it('should set the callback correctly', function() {
       logOutput.should.include('custom logging');
     });
   });
