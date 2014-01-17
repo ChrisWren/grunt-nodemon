@@ -19,7 +19,7 @@ grunt.loadNpmTasks('grunt-nodemon');
 ## Documentation
 
 ### Usage
-The minimal usage of nodemon runs with a `script` specified:
+The minimal usage of grunt-nodemon runs with a `script` specified:
 
 ```js
 nodemon: {
@@ -55,15 +55,12 @@ nodemon: {
     options: {
       args: ['dev'],
       nodeArgs: ['--debug'],
-      eventsCallback: function (eventName, eventObject) {
-        console.log('custom logging');
-        if (eventName === 'log') {
-          console.log(eventObject.message);
-        } else {
-          console.log(eventObject);
-        }
+      callback: function (nodemon) {
+        nodemon.on('log', function (event) {
+          console.log(event.colour);
+        });
       },
-      ignoredFiles: ['node_modules/**'],
+      ignored: ['node_modules/**'],
       watchedExtensions: ['js'],
       watchedFolders: ['server'],
       delayTime: 1,
@@ -91,12 +88,14 @@ nodemon: {
   dev: {
     script: 'index.js',
     options: {
-      eventsCallback: function (eventName, eventContent) {
-        if (eventName === 'log') {
-          console.log(eventContent.colour);
-        } else if (eventName === 'restart') {
+      callback: function (nodemon) {
+        nodemon.on('log', function (event) {
+          console.log(event.colour);
+        });
+
+        nodemon.on('restart', function () {
           grunt.file.write('.grunt/rebooted', 'rebooted');
-        }
+        });
       }
     }
   }
@@ -130,27 +129,27 @@ Script that nodemon runs and restarts when changes are detected.
 ### args
 Type: `Array` of `Strings`
 
-List of arguments to be passed to your file.
+List of arguments to be passed to your script.
 
 ### nodeArgs
 Type: `Array` of `Strings`
 
 List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server.
 
-### eventCallback
+### callback
 Type:  `Function`
 Default:
 
 ```js
-function(eventName, eventContent) {
+function(nodemon) {
   // By default the nodemon output is logged
-  if (eventName === 'log') {
-    console.log(eventContent.colour);
-  }
+  nodemon.on('log', function(event) {
+    console.log(event.colour);
+  });
 };
 ```
 
-Callback which receives an `eventName` string and an `eventContent` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts.
+Callback which receives the `nodemon` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts. See the [nodemon docs](https://github.com/remy/nodemon/blob/master/doc/events.md#states) for the full list of events you can tap into.
 
 ### ignored
 Type: `Array` of `String globs`
@@ -194,7 +193,7 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
-**0.2.0** - Updated to nodemon 1.0, added new [`eventCallback`](#eventCallback) option.
+**0.2.0** - Updated to nodemon 1.0, added new [`callback`](#callback) option.
 
 **Breaking changes:**
 
