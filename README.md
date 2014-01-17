@@ -60,15 +60,15 @@ nodemon: {
           console.log(event.colour);
         });
       },
-      ignored: ['node_modules/**'],
-      watchedExtensions: ['js'],
-      watchedFolders: ['server'],
-      delayTime: 1,
-      legacyWatch: true,
       env: {
         PORT: '8181'
       },
-      cwd: __dirname
+      cwd: __dirname,
+      ignored: ['node_modules/**'],
+      watchedExtensions: ['js', 'coffee'],
+      watchedFolders: ['server'],
+      delayTime: 1,
+      legacyWatch: true,
     }
   },
   exec: {
@@ -88,6 +88,7 @@ nodemon: {
   dev: {
     script: 'index.js',
     options: {
+      nodeArgs: ['--debug'],
       callback: function (nodemon) {
         nodemon.on('log', function (event) {
           console.log(event.colour);
@@ -154,7 +155,7 @@ Callback which receives the `nodemon` object. This can be used to respond to cha
 ### ignored
 Type: `Array` of `String globs`
 
-List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
+List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
 ### watchedExtensions
 Type: `Array` of `Strings`
