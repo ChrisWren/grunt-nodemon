@@ -1,8 +1,9 @@
 # grunt-nodemon
+
 > Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow
 
 [![NPM version](https://badge.fury.io/js/grunt-nodemon.png)](http://badge.fury.io/js/grunt-nodemon) [![Dependency Status](https://gemnasium.com/ChrisWren/grunt-nodemon.png)](https://gemnasium.com/ChrisWren/grunt-nodemon) [![Travis Status](https://travis-ci.org/ChrisWren/grunt-nodemon.png)](https://travis-ci.org/ChrisWren/grunt-nodemon)
-[![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+
 ## Getting Started
 If you haven't used grunt before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a gruntfile as well as install and use grunt plugins. Once you're familiar with that process, install this plugin with this command:
 ```shell
@@ -17,51 +18,40 @@ grunt.loadNpmTasks('grunt-nodemon');
 
 ## Documentation
 
-### Usage
-The minimal usage of nodemon runs with no options:
-```js
-nodemon: {
-  dev: {}
-}
-```
-When this is run, nodemon will look at the `package.json` file for the `main` property and run its value as a command in node.
-
-### Common Usage
-
-This config will start a node server located at `server.js` with the `--debug` node argument to allow for debugging and pass the PORT environment variable.
+### Minimal Usage
+The minimal usage of grunt-nodemon runs with a `script` specified:
 
 ```js
 nodemon: {
   dev: {
-    options: {
-      file: 'server.js',
-      nodeArgs: ['--debug'],
-      env: {
-        PORT: '8282'
-      }
-    }
+    script: 'index.js'
   }
 }
 ```
 
-### Example with all available options
+### Usage with all available options set
 
 ```js
 nodemon: {
   dev: {
+    script: 'index.js',
     options: {
-      file: 'server.js',
       args: ['dev'],
       nodeArgs: ['--debug'],
-      ignoredFiles: ['node_modules/**'],
-      watchedExtensions: ['js'],
-      watchedFolders: ['server'],
-      delayTime: 1,
-      legacyWatch: true,
+      callback: function (nodemon) {
+        nodemon.on('log', function (event) {
+          console.log(event.colour);
+        });
+      },
       env: {
         PORT: '8181'
       },
-      cwd: __dirname
+      cwd: __dirname,
+      ignored: ['node_modules/**'],
+      watchedExtensions: ['js', 'coffee'],
+      watchedFolders: ['server'],
+      delayTime: 1,
+      legacyWatch: true
     }
   },
   exec: {
@@ -72,9 +62,10 @@ nodemon: {
 }
 ```
 
-#### Running nodemon concurrently
+### Advanced Usage
 
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
+
 ```js
 concurrent: {
   dev: {
@@ -83,30 +74,85 @@ concurrent: {
       logConcurrentOutput: true
     }
   }
+},
+nodemon: {
+  dev: {
+    script: 'index.js',
+    options: {
+      nodeArgs: ['--debug'],
+      env: {
+        PORT: '5455'
+      },
+      // omit this property if you aren't serving HTML files and 
+      // don't want to open a browser tab on start
+      callback: function (nodemon) {
+        nodemon.on('log', function (event) {
+          console.log(event.colour);
+        });
+        
+        // opens browser on initial server start
+        nodemon.on('config:update', function () {
+          require('open')('http://localhost:5455');
+        });
+
+        // refreshes browser when server reboots
+        nodemon.on('restart', function () {
+          grunt.file.write('.grunt/rebooted', 'rebooted');
+        });
+      }
+    }
+  }
+},
+watch: {
+  server: {
+    files: ['.grunt/rebooted'],
+    options: {
+      livereload: true
+    }
+  } 
 }
 ```
 
-### Options
+*Note that using the callback config above assumes you have `open` installed and are injecting a LiveReload script into your HTML file(s). You can use [grunt-inject](https://github.com/ChrisWren/grunt-inject) to inject the LiveReload script.*
 
-#### file
+### Required properties
+
+#### script
 Type: `String`
 
-File that nodemon runs and restarts when changes are detected.
+Script that nodemon runs and restarts when changes are detected.
+
+### Options
 
 ### args
 Type: `Array` of `Strings`
 
-List of arguments to be passed to your file.
+List of arguments to be passed to your script.
 
 ### nodeArgs
 Type: `Array` of `Strings`
 
 List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server.
 
-### ignoredFiles
+### callback
+Type:  `Function`
+Default:
+
+```js
+function(nodemon) {
+  // By default the nodemon output is logged
+  nodemon.on('log', function(event) {
+    console.log(event.colour);
+  });
+};
+```
+
+Callback which receives the `nodemon` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts. See the [nodemon docs](https://github.com/remy/nodemon/blob/master/doc/events.md#states) for the full list of events you can tap into.
+
+### ignored
 Type: `Array` of `String globs`
 
-List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files. This task will create a `.nodemonignore` file in your repo based on these settings which nodemon reads when it starts.
+List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
 ### watchedExtensions
 Type: `Array` of `Strings`
@@ -121,7 +167,7 @@ List of folders to watch for changes if you don't want to watch the root folder 
 ### delayTime
 Type: `Number`
 
-Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file.
+Delay the restart of nodemon by a number of milliseconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
 
 ### legacyWatch
 Type: `Boolean`
@@ -131,19 +177,25 @@ If you wish to force nodemon to start with the legacy watch method. See <https:/
 ### cwd
 Type: `String`
 
-The current working directory to run your file from.
+The current working directory to run your script from.
 
 ### env
 Type: `Object`
 
-Hash of environment variables to pass to your file.
+Hash of environment variables to pass to your script.
 
 ### exec
 Type: `String`
 
-You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the file parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
+You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the script parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
 
 # Changelog
+
+**0.2.0** - Updated to nodemon 1.0, added new [`callback`](#callback) option.
+
+**Breaking changes:**
+
+- `options.file` is now `script` and is a required property. `ignoredFiles` is now `ignored` to match nodemon.
 
 **0.1.2** - `nodemon` can now be listed as a dependency in the package.json and grunt-nodemon will resolve the nodemon.js file's location correctly.
 
