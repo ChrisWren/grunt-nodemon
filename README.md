@@ -84,6 +84,14 @@ nodemon: {
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 
 ```js
+concurrent: {
+  dev: {
+    tasks: ['nodemon', 'node-inspector', 'watch'],
+    options: {
+      logConcurrentOutput: true
+    }
+  }
+},
 nodemon: {
   dev: {
     script: 'index.js',
@@ -92,6 +100,7 @@ nodemon: {
       env: {
         PORT: '5455'
       },
+      // omit this property if you aren't serving HTML files and don't want to open a browser tab on start
       callback: function (nodemon) {
         nodemon.on('log', function (event) {
           console.log(event.colour);
@@ -117,16 +126,11 @@ watch: {
       livereload: true
     }
   } 
-},
-concurrent: {
-  dev: {
-    tasks: ['nodemon', 'node-inspector', 'watch'],
-    options: {
-      logConcurrentOutput: true
-    }
-  }
 }
 ```
+
+*Note that using the callback config above assumes you have `open` installed and are injecting a LiveReload script into your HTML file(s). You can use [grunt-inject](https://github.com/ChrisWren/grunt-inject) to inject the LiveReload script.*
+
 ### Required properties
 
 #### script
