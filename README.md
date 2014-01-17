@@ -18,7 +18,7 @@ grunt.loadNpmTasks('grunt-nodemon');
 
 ## Documentation
 
-### Usage
+### Minimal Usage
 The minimal usage of grunt-nodemon runs with a `script` specified:
 
 ```js
@@ -29,24 +29,7 @@ nodemon: {
 }
 ```
 
-### Common Usage
-This config will start a node server located at `index.js` with the `--debug` node argument to allow for debugging and pass the PORT environment variable.
-
-```js
-nodemon: {
-  dev: {
-    script: 'index.js',
-    options: {
-      nodeArgs: ['--debug'],
-      env: {
-        PORT: '8282'
-      }
-    }
-  }
-}
-```
-
-### Example with all available options
+### Usage with all available options set
 
 ```js
 nodemon: {
@@ -68,7 +51,7 @@ nodemon: {
       watchedExtensions: ['js', 'coffee'],
       watchedFolders: ['server'],
       delayTime: 1,
-      legacyWatch: true,
+      legacyWatch: true
     }
   },
   exec: {
@@ -79,7 +62,7 @@ nodemon: {
 }
 ```
 
-#### Running nodemon concurrently
+### Advanced Usage
 
 A common use case is to run `nodemon` with other tasks concurrently. This can be achieved with the following config, which uses [grunt-concurrent](https://github.com/sindresorhus/grunt-concurrent) to run nodemon, [node-inspector](https://github.com/ChrisWren/grunt-node-inspector), and [watch](https://github.com/gruntjs/grunt-contrib-watch) in a single terminal tab:
 
