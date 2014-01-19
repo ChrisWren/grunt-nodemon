@@ -195,7 +195,7 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 **Breaking changes:**
 
-- `options.file` is now `script` and is a required property. `ignoredFiles` is now `ignored` to match nodemon.
+- `options.file` is now `script` and is a required property. Some properties were changed to match nodemon: `ignoredFiles` -> `ignore`, `watchedFolders` -> `watch`, `watchedExtensions` -> `ext`(now a string) to match nodemon.
 
 **0.1.2** - `nodemon` can now be listed as a dependency in the package.json and grunt-nodemon will resolve the nodemon.js file's location correctly.
 
