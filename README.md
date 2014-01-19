@@ -47,9 +47,9 @@ nodemon: {
         PORT: '8181'
       },
       cwd: __dirname,
-      ignored: ['node_modules/**'],
-      watchedExtensions: ['js', 'coffee'],
-      watchedFolders: ['server'],
+      ignore: ['node_modules/**'],
+      ext: 'js,coffee',
+      watch: ['server'],
       delayTime: 1,
       legacyWatch: true
     }
@@ -149,17 +149,17 @@ function(nodemon) {
 
 Callback which receives the `nodemon` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts. See the [nodemon docs](https://github.com/remy/nodemon/blob/master/doc/events.md#states) for the full list of events you can tap into.
 
-### ignored
+### ignore
 Type: `Array` of `String globs`
 
 List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
-### watchedExtensions
-Type: `Array` of `Strings`
+### ext
+Type: `String`
 
-List of file extensions to watch for changes. By default, nodemon watches `.js`, `.coffee`, and `.litcoffee` files.
+String with comma separated file extensions to watch. By default, nodemon watches `.js` files.
 
-### watchedFolders
+### watch
 Type: `Array` of `Strings` Default: `'.'`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
