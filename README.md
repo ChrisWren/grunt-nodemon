@@ -92,12 +92,18 @@ nodemon: {
         
         // opens browser on initial server start
         nodemon.on('config:update', function () {
-          require('open')('http://localhost:5455');
+          // Delay before server listens on port
+          setTimeout(function() {
+            require('open')('http://localhost:5455');
+          }, 1000);
         });
 
         // refreshes browser when server reboots
         nodemon.on('restart', function () {
-          grunt.file.write('.grunt/rebooted', 'rebooted');
+          // Delay before server listens on port
+          setTimeout(function() {
+            require('fs').writeFileSync('.grunt/rebooted', 'rebooted');
+          }, 1000);
         });
       }
     }
