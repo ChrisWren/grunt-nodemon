@@ -50,7 +50,7 @@ nodemon: {
       ignore: ['node_modules/**'],
       ext: 'js,coffee',
       watch: ['server'],
-      delayTime: 1,
+      delay: 1,
       legacyWatch: true
     }
   },
@@ -170,10 +170,10 @@ Type: `Array` of `Strings` Default: `'.'`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
 
-#### delayTime
+#### delay
 Type: `Number`
 
-Delay the restart of nodemon by a number of milliseconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
+Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
 
 #### legacyWatch
 Type: `Boolean`
@@ -201,7 +201,7 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 **Breaking changes:**
 
-- `options.file` is now `script` and is a required property. Some properties were changed to match nodemon: `ignoredFiles` -> `ignore`, `watchedFolders` -> `watch`, `watchedExtensions` -> `ext`(now a string) to match nodemon.
+- `options.file` is now `script` and is a required property. Some properties were changed to match nodemon: `ignoredFiles` -> `ignore`, `watchedFolders` -> `watch`, `delayTime` -> `delay`, `watchedExtensions` -> `ext`(now a string) to match nodemon.
 
 **0.1.2** - `nodemon` can now be listed as a dependency in the package.json and grunt-nodemon will resolve the nodemon.js file's location correctly.
 
