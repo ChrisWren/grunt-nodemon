@@ -130,17 +130,17 @@ Script that nodemon runs and restarts when changes are detected.
 
 ### Options
 
-### args
+#### args
 Type: `Array` of `Strings`
 
 List of arguments to be passed to your script.
 
-### nodeArgs
+#### nodeArgs
 Type: `Array` of `Strings`
 
 List of arguments to be passed to node. The most common argument is `--debug` or `--debug-brk` to start a debugging server.
 
-### callback
+#### callback
 Type:  `Function`
 Default:
 
@@ -155,42 +155,42 @@ function(nodemon) {
 
 Callback which receives the `nodemon` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts. See the [nodemon docs](https://github.com/remy/nodemon/blob/master/doc/events.md#states) for the full list of events you can tap into.
 
-### ignore
+#### ignore
 Type: `Array` of `String globs`
 
 List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
-### ext
+#### ext
 Type: `String`
 
 String with comma separated file extensions to watch. By default, nodemon watches `.js` files.
 
-### watch
+#### watch
 Type: `Array` of `Strings` Default: `'.'`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
 
-### delayTime
+#### delayTime
 Type: `Number`
 
 Delay the restart of nodemon by a number of milliseconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
 
-### legacyWatch
+#### legacyWatch
 Type: `Boolean`
 
 If you wish to force nodemon to start with the legacy watch method. See <https://github.com/remy/nodemon#help-my-changes-arent-being-detected> for more details.
 
-### cwd
+#### cwd
 Type: `String`
 
 The current working directory to run your script from.
 
-### env
+#### env
 Type: `Object`
 
 Hash of environment variables to pass to your script.
 
-### exec
+#### exec
 Type: `String`
 
 You can use nodemon to execute a command outside of node. Use this option to specify a command as a string with the argument being the script parameter above. You can read more on exec [here](https://github.com/remy/nodemon#running-non-node-scripts).
