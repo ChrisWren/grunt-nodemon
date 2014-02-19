@@ -102,7 +102,7 @@ nodemon: {
         nodemon.on('restart', function () {
           // Delay before server listens on port
           setTimeout(function() {
-            require('fs').writeFileSync('.grunt/rebooted', 'rebooted');
+            require('fs').writeFileSync('.rebooted', 'rebooted');
           }, 1000);
         });
       }
@@ -111,7 +111,7 @@ nodemon: {
 },
 watch: {
   server: {
-    files: ['.grunt/rebooted'],
+    files: ['.rebooted'],
     options: {
       livereload: true
     }
