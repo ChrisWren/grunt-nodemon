@@ -121,7 +121,7 @@ watch: {
 
 *Note that using the callback config above assumes you have `open` installed and are injecting a LiveReload script into your HTML file(s). You can use [grunt-inject](https://github.com/ChrisWren/grunt-inject) to inject the LiveReload script.*
 
-### Required properties
+### Required property
 
 #### script
 Type: `String`
@@ -156,27 +156,27 @@ function(nodemon) {
 Callback which receives the `nodemon` object. This can be used to respond to changes in a running app, and then do cool things like LiveReload a web browser when the app restarts. See the [nodemon docs](https://github.com/remy/nodemon/blob/master/doc/events.md#states) for the full list of events you can tap into.
 
 #### ignore
-Type: `Array` of `String globs`
+Type: `Array` of `String globs` Default: `['node_modules/**']`
 
 List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
 #### ext
-Type: `String`
+Type: `String` Default: `'js'`
 
 String with comma separated file extensions to watch. By default, nodemon watches `.js` files.
 
 #### watch
-Type: `Array` of `Strings` Default: `'.'`
+Type: `Array` of `Strings` Default: `['.']`
 
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
 
 #### delay
-Type: `Number`
+Type: `Number` Default: `1`
 
 Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
 
 #### legacyWatch
-Type: `Boolean`
+Type: `Boolean` Default: `false`
 
 If you wish to force nodemon to start with the legacy watch method. See <https://github.com/remy/nodemon#help-my-changes-arent-being-detected> for more details.
 
