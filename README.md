@@ -50,7 +50,7 @@ nodemon: {
       ignore: ['node_modules/**'],
       ext: 'js,coffee',
       watch: ['server'],
-      delay: 1,
+      delay: 1000,
       legacyWatch: true
     }
   },
@@ -171,9 +171,9 @@ Type: `Array` of `Strings` Default: `['.']`
 List of folders to watch for changes if you don't want to watch the root folder and its subdirectories.
 
 #### delay
-Type: `Number` Default: `1`
+Type: `Number` Default: `1000`
 
-Delay the restart of nodemon by a number of seconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
+Delay the restart of nodemon by a number of milliseconds when compiling a large amount of files so that the app doesn't needlessly restart after each file is changed.
 
 #### legacyWatch
 Type: `Boolean` Default: `false`
