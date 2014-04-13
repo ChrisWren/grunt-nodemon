@@ -158,7 +158,7 @@ Callback which receives the `nodemon` object. This can be used to respond to cha
 #### ignore
 Type: `Array` of `String globs` Default: `['node_modules/**']`
 
-List of ignored files specified by a glob pattern. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
+List of ignored files specified by a glob pattern relative to the [watch](#watch)ed folder. [Here](https://github.com/remy/nodemon#ignoring-files) is an explanation of how to use the patterns to ignore files.
 
 #### ext
 Type: `String` Default: `'js'`
