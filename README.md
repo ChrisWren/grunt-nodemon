@@ -197,6 +197,8 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 # Changelog
 
+**0.3.0** - Updated to nodemon `1.2.0`.
+
 **0.2.1** - Updated README on npmjs.org with correct options.
 
 **0.2.0** - Updated to nodemon 1.0, added new [`callback`](#callback) option.
