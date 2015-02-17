@@ -168,7 +168,7 @@ String with comma separated file extensions to watch. By default, nodemon watche
 #### watch
 Type: `Array` of `Strings` Default: `['.']`
 
-List of additional folders to watch for changes.
+List of folders to watch for changes. By default nodemon will traverse sub-directories, so there's no need in explicitly including sub-directories.
 
 #### delay
 Type: `Number` Default: `1000`
