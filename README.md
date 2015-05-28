@@ -178,7 +178,7 @@ Delay the restart of nodemon by a number of milliseconds when compiling a large 
 #### legacyWatch
 Type: `Boolean` Default: `false`
 
-If you wish to force nodemon to start with the legacy watch method. See <https://github.com/remy/nodemon#help-my-changes-arent-being-detected> for more details.
+If you wish to force nodemon to start with the legacy watch method. See <https://github.com/remy/nodemon/blob/master/faq.md#help-my-changes-arent-being-detected> for more details.
 
 #### cwd
 Type: `String`
