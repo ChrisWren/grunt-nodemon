@@ -1,3 +1,5 @@
+# Note: This is not actively maintained, please make an issue if you are interested in helping maintain this project.
+
 # grunt-nodemon
 
 > Run [nodemon](https://github.com/remy/nodemon) as a grunt task for easy configuration and integration with the rest of your workflow
