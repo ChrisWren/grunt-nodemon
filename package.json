@@ -1,6 +1,6 @@
 {
   "name": "grunt-nodemon",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Grunt task to run a nodemon monitor of your node.js server",
   "main": "test/fixtures/server.js",
   "scripts": {
@@ -22,14 +22,15 @@
   },
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-jshint": "^0.11.3",
     "grunt-mdlint": "0.0.1",
     "grunt-release": "^0.13.0",
     "grunt-simple-mocha": "^0.4.0",
-    "matchdep": "^0.3.0",
-    "should": "^7.0.4"
+    "matchdep": "^1.0.0",
+    "mdlint": "^0.1.0",
+    "should": "^7.1.0"
   },
   "dependencies": {
-    "nodemon": "^1.4.1"
+    "nodemon": "^1.7.1"
   }
 }
