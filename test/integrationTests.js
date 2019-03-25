@@ -29,7 +29,7 @@ describe('grunt-nodemon', function () {
     });
 
     it('should set node arguments correctly', function() {
-      logOutput.should.containEql('debug');
+      logOutput.should.containEql('inspect');
     });
 
     it('should set the ignored files correctly', function() {
@@ -64,7 +64,7 @@ describe('grunt-nodemon', function () {
     });
 
     it('should log nodemon output', function() {
-      logOutput.should.containEql('debug');
+      logOutput.should.containEql('inspect');
     });
   });
 });
