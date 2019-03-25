@@ -33,7 +33,18 @@ module.exports = function (grunt) {
         script: 'test/fixtures/server.js',
       }
     },
-    mdlint: ['README.md'],
+    markdownlint: {
+      src: [ 'README.md'],
+      options: {
+          config: { //configure the linting rules
+             'default': true,
+             'line-length': false,
+             'blanks-around-headers': false,
+             'no-duplicate-header': false,
+             'no-inline-html': false
+          }
+      },
+    },
     simplemocha: {
       options: {
         globals: ['should'],
@@ -79,7 +90,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('default', ['nodemon']);
-  grunt.registerTask('test', ['jshint', 'mdlint', 'simplemocha']);
+  grunt.registerTask('test', ['jshint', 'markdownlint', 'simplemocha']);
 
   grunt.loadTasks('tasks');
 
