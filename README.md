@@ -198,6 +198,15 @@ You can use nodemon to execute a command outside of node. Use this option to spe
 
 ## Changelog
 
+
+**0.4.3** - Updated to nodemon `1.18.10`, fix old tests. Switched to package grunt-markdownlint.
+
+**0.4.2** - Updated peer dependencies.
+
+**0.4.1** - Updated dependencies.
+
+**0.4.0** - Updated dependencies.
+
 **0.3.0** - Updated to nodemon `1.2.0`.
 
 **0.2.1** - Updated README on npmjs.org with correct options.
