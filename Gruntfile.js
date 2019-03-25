@@ -17,7 +17,7 @@ module.exports = function (grunt) {
             PORT: '8181'
           },
           args: ['production'],
-          nodeArgs: ['--debug'],
+          nodeArgs: ['--inspect'],
           callback: function(nodemon) {
             nodemon.on('log', function(event) {
               console.log(event.colour);
